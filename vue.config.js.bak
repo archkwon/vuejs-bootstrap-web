@@ -1,0 +1,13 @@
+module.exports = {
+    runtimeCompiler: true,
+    productionSourceMap: false,
+    publicPath: './',
+    lintOnSave: false,
+    chainWebpack: config => config.resolve.symlinks(false),
+    devServer: {
+    public: '182.162.22.239:8081',
+    //public: '192.168.0.9:8081'
+    //public: 'localhost:8081'
+    // https: true
+    }
+};

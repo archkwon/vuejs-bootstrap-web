@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">        
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>ArchitectUI - Vuejs & Bootstrap 4 & Vuetify Admin UI Dashboard Template</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="https://apis.openapi.sk.com/tmap/js?version=1&format=javascript&appKey=c86cbc87-df88-49a4-8365-f6d877eb2b01"></script>
+    <script type="text/javascript" src="http://jsgetip.appspot.com"></script>
+    <script src="sidebarMenu.js"></script>
+    
+    <script>
+    	function setCookie(cookie_name, value, days) {
+	    	var exdate = new Date();
+	    	exdate.setDate(exdate.getDate() + days);
+	    	// 설정 일수만큼 현재시간에 만료값으로 지정
+	
+	    	var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+	    	document.cookie = cookie_name + '=' + cookie_value;
+    	}
+    	function getCookie(cookie_name) {
+    		var x, y;
+    		var val = document.cookie.split(';');
+
+    		for (var i = 0; i < val.length; i++) {
+    		    x = val[i].substr(0, val[i].indexOf('='));
+    		    y = val[i].substr(val[i].indexOf('=') + 1);
+    		    x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+    		    if (x == cookie_name) {
+    		    	return unescape(y); // unescape로 디코딩 후 값 리턴
+    		    }
+    		}
+    	}
+    
+	    Date.prototype.format = function(f) {
+	        if (!this.valueOf()) return " ";
+	     
+	        var weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+	        var d = this;
+	         
+	        return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
+	            switch ($1) {
+	                case "yyyy": return d.getFullYear();
+	                case "yy": return (d.getFullYear() % 1000).zf(2);
+	                case "MM": return (d.getMonth() + 1).zf(2);
+	                case "dd": return d.getDate().zf(2);
+	                case "E": return weekName[d.getDay()];
+	                case "HH": return d.getHours().zf(2);
+	                case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+	                case "mm": return d.getMinutes().zf(2);
+	                case "ss": return d.getSeconds().zf(2);
+	                case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+	                default: return $1;
+	            }
+	        });
+	    };
+	     
+	    String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+	    String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+	    Number.prototype.zf = function(len){return this.toString().zf(len);};
+		
+	    
+	    String.prototype.replaceAll = function(org, dest) {
+	        return this.split(org).join(dest);
+	    }
+	    String.prototype.toCamel = function(){
+	        return this.toLowerCase().replace(/[_\-]([^_\-])/g, function($0,$1){return $1.toUpperCase();});
+	    };
+	    
+	    function numberStyle1(x){
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		function numberStyle2(x){
+			return parseInt(x.split(",").join(""));
+		}
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but ArchitectUI doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
